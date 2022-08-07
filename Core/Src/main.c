@@ -51,10 +51,11 @@ UART_HandleTypeDef huart1;
 UART_HandleTypeDef huart2;
 
 /* USER CODE BEGIN PV */
-char        s_start[]   = "START\n" ;
-uint8_t     i           = 33 ;
-uint8_t     j[1]        = { 33 } ;
-char        rcv[1]      = { 0 } ;
+HAL_StatusTypeDef uart_status   = HAL_OK ;
+char        s_start[]           = "START\n" ;
+uint8_t     i                   = 33 ;
+uint8_t     j[1]                = { 33 } ;
+char        rcv[1]              = { 0 } ;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -102,12 +103,13 @@ int main(void)
   MX_USART2_UART_Init();
   MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
-  HAL_StatusTypeDef uart_status = HAL_UART_Transmit ( &huart2 , (const uint8_t *) s_start , strlen ( s_start ) , UART_TX_TIMEOUT ) ;
+  uart_status = HAL_UART_Transmit ( &huart2 , (const uint8_t *) s_start , strlen ( s_start ) , UART_TX_TIMEOUT ) ;
   if ( uart_status != HAL_OK )
   {
       Error_Handler () ;
   }
-  if ( HAL_UART_Transmit ( &huart1 , (const uint8_t *) s_start , sizeof ( s_start ) , UART_TX_TIMEOUT ) != HAL_OK )
+  uart_status = HAL_UART_Transmit ( &huart1 , (const uint8_t *) s_start , strlen( s_start ) , UART_TX_TIMEOUT ) ;
+  if ( uart_status != HAL_OK )
   {
       Error_Handler () ;
   }
