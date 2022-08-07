@@ -867,7 +867,7 @@ int main(void)
  80006c4:	009b      	lsls	r3, r3, #2
  80006c6:	4910      	ldr	r1, [pc, #64]	; (8000708 <main+0xdc>)
  80006c8:	480c      	ldr	r0, [pc, #48]	; (80006fc <main+0xd0>)
- 80006ca:	2202      	movs	r2, #2
+ 80006ca:	2201      	movs	r2, #1
  80006cc:	f001 fc46 	bl	8001f5c <HAL_UART_Receive>
       if ( rcv[0] != 0 )
  80006d0:	4b0d      	ldr	r3, [pc, #52]	; (8000708 <main+0xdc>)
